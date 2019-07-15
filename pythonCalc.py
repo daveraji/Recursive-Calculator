@@ -30,7 +30,7 @@ def deconstructor(arr):
             bool = False
         else:
             raise Exception('Wrong syntax on input - Use only numbers, operations and brackets')
-    logger.info('expression: %s', expression)
+    logger.warning('expression: %s', expression)
     return expression
 
 def function(sign, num1, num2):
@@ -56,7 +56,7 @@ def calculate_num(expression):
     tiers = [['^',''],['/','*'],['+','-']]
 
     if len(expression) == 1:  # basecase
-        logger.info('numresult: %s', expression[0])
+        logger.warning('numresult: %s', expression[0])
         return expression[0]
 
     #handle recursive math
@@ -67,31 +67,26 @@ def calculate_num(expression):
                 expression[index]= function(expression[index],float(expression[index-1]), float(expression[index+1]))
                 del expression[index-1]
                 del expression[index]
-                #logger.info('breakdown: %s', expression)
+                #logger.warning('breakdown: %s', expression)
                 return calculate_num(expression)
 
 
 def calculate_brack(expression):
     #base case
     if len(expression) == 1:  # basecase
-        logger.info('brackresult: %s', expression[0])
+        logger.warning('basebrack: %s', expression)
         return expression[0]
 
     #recursive case
     if '(' in expression:
-        brack_open = expression.index('(')
+        brack_open = dict(map(reversed, enumerate(expression)))['('] #find last open bracket
+        brack_close =next(i for i in range(len(expression)) if expression[i]==')' and i > brack_open)  #find first closed after that
         #brack_close = expression.index(')')
         #run brack calc on all the numbers minus the open bracket
-        expression[brack_open:] = [calculate_brack(expression[brack_open+1:])]
-        logger.info('when theres brack opens: %s', expression)
-        return calculate_brack(expression)
-    elif ')' in expression:
-        brack_open = 0
-        brack_close = expression.index(')')
-        logger.info('precalcbrack: %s', expression)
-        expression[brack_open:brack_close+1] = [calculate_num(expression[: brack_close])]
-        #expression[brack_open: brack_close+1] = []
-        logger.info('evalbrack: %s', expression)
+        logger.warning('when theres brack opens: %s, %s, %s', expression, str(brack_open), str(brack_close))
+        expression[brack_open:brack_close+1] = [calculate_num(expression[brack_open+1: brack_close])] #replace bracket with number
+        logger.warning('changed expression after evaluating brack: %s, %s, %s', expression, str(brack_open), str(brack_close))
+        #return expression where the bracket is replaced by the number
         return calculate_brack(expression)
     else:
         return calculate_num(expression)
