@@ -115,8 +115,7 @@ def index(result=0):
     Bracket funcitonality (DONE)
     When you finish a function - go to index with answer already in the form
     add database of answers.
-        - when you click on an answer it will be added to the demo value. 
+        - when you click on an answer it will be added to the demo value.
 '''
 if __name__ == '__main__':
-    port = 8000 #the custom port you want
-    app.run(port=port)
+    app.run(host='0.0.0.0', port=80)
