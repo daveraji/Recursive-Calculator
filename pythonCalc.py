@@ -30,7 +30,7 @@ def deconstructor(arr):
             bool = False
         else:
             raise Exception('Wrong syntax on input - Use only numbers, operations and brackets')
-    logger.warning('expression: %s', expression)
+    logger.info('expression: %s', expression)
     return expression
 
 def function(sign, num1, num2):
@@ -56,7 +56,7 @@ def calculate_num(expression):
     tiers = [['^',''],['/','*'],['+','-']]
 
     if len(expression) == 1:  # basecase
-        logger.warning('numresult: %s', expression[0])
+        logger.info('numresult: %s', expression[0])
         return expression[0]
 
     #handle recursive math
@@ -67,14 +67,14 @@ def calculate_num(expression):
                 expression[index]= function(expression[index],float(expression[index-1]), float(expression[index+1]))
                 del expression[index-1]
                 del expression[index]
-                #logger.warning('breakdown: %s', expression)
+                #logger.info('breakdown: %s', expression)
                 return calculate_num(expression)
 
 
 def calculate_brack(expression):
     #base case
     if len(expression) == 1:  # basecase
-        logger.warning('basebrack: %s', expression)
+        logger.info('basebrack: %s', expression)
         return expression[0]
 
     #recursive case
@@ -83,9 +83,9 @@ def calculate_brack(expression):
         brack_close =next(i for i in range(len(expression)) if expression[i]==')' and i > brack_open)  #find first closed after that
         #brack_close = expression.index(')')
         #run brack calc on all the numbers minus the open bracket
-        logger.warning('when theres brack opens: %s, %s, %s', expression, str(brack_open), str(brack_close))
+        logger.info('when theres brack opens: %s, %s, %s', expression, str(brack_open), str(brack_close))
         expression[brack_open:brack_close+1] = [calculate_num(expression[brack_open+1: brack_close])] #replace bracket with number
-        logger.warning('changed expression after evaluating brack: %s, %s, %s', expression, str(brack_open), str(brack_close))
+        logger.info('changed expression after evaluating brack: %s, %s, %s', expression, str(brack_open), str(brack_close))
         #return expression where the bracket is replaced by the number
         return calculate_brack(expression)
     else:
@@ -101,7 +101,7 @@ def index(result=0):
             result = calculate_brack(expression)
         except Exception as e:
             result = e
-            #logger.warning('result: %s', result)
+            #logger.info('result: %s', result)
             #return redirect(url_for('processor'))
     return render_template('CalcUI.html', title='Calculator Home', final=result)
 
