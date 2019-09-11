@@ -4,19 +4,18 @@
 <head>
   <meta charset="utf-8">
   <title>Recursive Calculator</title>
-  <link rel="stylesheet" type="text/css" href="CalcUI.css">
   <link rel="stylesheet" type="text/css" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  </head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CalcUI.css') }}">
+</head>
 
 <body>
-  <div class="container-fluid"
+  <div class="container"
     style="border: 1px solid #C0C0C0; border-radius: 1px;padding: 10px;margin: auto; width:550px ;">
     <hgroup>
       <h1><img src="{{ url_for('static', filename='logo.png') }}" width="100">Recursive Calculator</h1>
     </hgroup>
-    <form class="from-group" action="{{ url_for('index') }}" method="post">
-      <a class="btn btn-primary" role="div" href="{{ url_for('index')}}">{{ final }}</a><br>
-      <input type="text" name="result" id="demo" class="form-control col-sm-4" value='{{request.form.result}}'></input>
+    <form class="from-group" style="box-sizing: content-box;" action="{{ url_for('index') }}" method="post">
+      <input type="text" name="result" id="demo" class="form-control col-sm-4" value="{{ final }}"></input>
       <style>
         col-1 {
           border: 1px solid rgb(197, 78, 78);
@@ -24,35 +23,36 @@
           background-blend-mode: darken;
         }
       </style>
-      <div class="row">
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);"onclick="demo.value+='1'">1</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);"onclick="demo.value+='2'">2</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+='3'">3</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+='+'">+</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);"
-          onclick="demo.value = demo.value.substring(0, demo.value.length - 1)">Del</div>
-      </div>
+      <div class="calc">
+        <div class="row">
+          <div class="col-1" onclick="demo.value+='1'">1</div>
+          <div class="col-1" onclick="demo.value+='2'">2</div>
+          <div class="col-1" onclick="demo.value+='3'">3</div>
+          <div class="col-1" onclick="demo.value+='+'">+</div>
+          <div class="col-1" onclick="demo.value = demo.value.substring(0, demo.value.length - 1)">Del</div>
+        </div>
 
-      <div class="row">
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+=4">4</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+=5">5</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+=6">6</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+='-'">-</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+='('">(</div>
-      </div>
-      <div class="row">
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+=7">7</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+=8">8</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+=9">9</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+='*'">x</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+=')'">)</div>
-      </div>
-      <div class="row">
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+=.">.</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+=0">0</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value+='/'">%</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" onclick="demo.value=''">C</div>
-        <div class="col-1" style="border: 1px solid rgb(197, 78, 78);" type='submit' value="Share">=</div>
+        <div class="row">
+          <div class="col-1" onclick="demo.value+=4">4</div>
+          <div class="col-1" onclick="demo.value+=5">5</div>
+          <div class="col-1" onclick="demo.value+=6">6</div>
+          <div class="col-1" onclick="demo.value+='-'">-</div>
+          <div class="col-1" onclick="demo.value+='('">(</div>
+        </div>
+        <div class="row">
+          <div class="col-1" onclick="demo.value+=7">7</div>
+          <div class="col-1" onclick="demo.value+=8">8</div>
+          <div class="col-1" onclick="demo.value+=9">9</div>
+          <div class="col-1" onclick="demo.value+='*'">x</div>
+          <div class="col-1" onclick="demo.value+=')'">)</div>
+        </div>
+        <div class="row">
+          <div class="col-1" onclick="demo.value+=.">.</div>
+          <div class="col-1" onclick="demo.value+=0">0</div>
+          <div class="col-1" onclick="demo.value+='/'">%</div>
+          <div class="col-1" onclick="demo.value=''">C</div>
+          <button class="col-1" type='submit' value="Submit">=</button>
+        </div>
       </div>
     </form>
 

@@ -103,7 +103,7 @@ def index(result=0):
             result = e
             #logger.info('result: %s', result)
             #return redirect(url_for('processor'))
-    return render_template('CalcUI.html', title='Calculator Home', final=result)
+    return render_template('CalcUI.html', title='Calculator Home', final=result, result=result)
 
 '''
     Next tings to do:
