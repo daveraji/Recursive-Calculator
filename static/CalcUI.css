@@ -1,0 +1,41 @@
+*, ::after, ::before {
+  box-sizing: content-box;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-color: DodgerBlue;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  color: white;
+  width: 100px;
+  height: 100px;
+}
+
+.col-1 {
+  border: 1px solid rgb(197, 78, 78);
+  background-color: indianred;
+  background-blend-mode: darken;
+}
+
+.from-group {
+  box-sizing: content-box;
+  text-align: -webkit-center;
+  padding: 132px;
+  padding-top: 30px;
+}
+
+.form-control.col-sm-4 {
+  max-width: 87%;
+}
+
+.calc {
+  box-sizing: content-box;
+  margin: 0% 19px;
+
+}
