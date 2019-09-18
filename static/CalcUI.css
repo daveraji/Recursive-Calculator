@@ -23,6 +23,10 @@
   background-blend-mode: darken;
 }
 
+.row {
+  flex-wrap: nowrap;
+}
+
 .from-group {
   box-sizing: content-box;
   text-align: -webkit-center;
